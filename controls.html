@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CiF Controls</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<style>
+    a {
+        color: darkslategray;
+        background-color: white;
+        padding: 10px;
+        margin:20px;
+        border-radius: 10px;
+    }
+    
+    p {
+        color: black;
+    }
+</style>
+<body>
+    <div style="margin: 100px auto 0px auto; text-align: center; width: 350px; background-color:lightgray; padding: 25px 0px; border-radius: 10px;">
+        <h3 style="font-family: monospace;color: darkslategray;font-weight: 300;padding-bottom:15px;">Visual Controls</h3>
+        <p style="font-size: 25px; font-family: monospace; padding-bottom: 15px;">
+            <a class="button" href="javascript:void(0);" onclick="speed(1)" style="text-decoration: none;">1. WAIT</a>
+            <br><br>
+            <a class="button" href="javascript:void(0);" onclick="speed(2)" style="text-decoration: none;">2. MOVE</a>
+            <br><br>
+            <a class="button" href="javascript:void(0);" onclick="speed(3)" style="text-decoration: none;">3. FLOW</a>
+            <br><br>
+            <a class="button" href="javascript:void(0);" onclick="speed(4)" style="text-decoration: none;">REVERSE</a>
+            <br>
+        </p>
+        
+        <hr>
+        <p style="font-size: 25px; font-family: monospace;">REFINE</p>
+        <p style="font-size: 35px; font-family: monospace;">
+           <a class="button" href="javascript:void(0);" onclick="goSlower('ring1')" style="text-decoration: none;">&#8634;</a>
+            &#10122;
+           <a class="button" href="javascript:void(0);" onclick="goFaster('ring1')" style="text-decoration: none;">&#8635;</a>
+        </p> 
+
+        <p style="font-size: 35px; font-family: monospace;">
+           <a class="button" href="javascript:void(0);" onclick="goSlower('ring2')" style="text-decoration: none;">&#8634;</a>
+            &#10123;
+           <a class="button" href="javascript:void(0);" onclick="goFaster('ring2')" style="text-decoration: none;">&#8635;</a>
+        </p> 
+
+        <p style="font-size: 35px; font-family: monospace; margin:15px 0px;">
+           
+           <a class="button" href="javascript:void(0);" onclick="goSlower('ring3')" style="text-decoration: none;">&#8634;</a>
+            &#10124;
+           <a class="button" href="javascript:void(0);" onclick="goFaster('ring3')" style="text-decoration: none;">&#8635;</a>
+        </p> 
+        <p style="font-size: 35px; font-family: monospace; padding-bottom: 25px;">
+           <a class="button" href="javascript:void(0);" onclick="goSlower('eye')" style="text-decoration: none;">&#8634;</a>
+            &#9906;
+           <a class="button" href="javascript:void(0);" onclick="goFaster('eye')" style="text-decoration: none;">&#8635;</a>
+        </p> 
+
+        <hr>
+        <p style="font-size: 25px; font-family: monospace; padding: 10px 0px;">REVISE</p>
+            
+            <div style="width: 75%; padding: 20px 0px; margin: auto;">
+                <a id="reset" class="button" href="javascript:void(0);" onclick="reset()" style="text-decoration: none;">RESET</a>
+            </div>
+            <div id="color_btn" style="width: 75%; padding: 20px 0px; margin: auto;">
+                <a class="button" href="javascript:void(0);" onclick="changeColor('colors')" style="text-decoration: none;">GO WILD</a>
+            </div>
+            <div style="width: 75%; padding:20px 0px; margin:auto;">
+                <a id="random-color" class="button" href="javascript:void(0);" onclick="randomColor()" style="text-decoration: none;">GLITCH</a>
+            </div>
+            <div id="visibility" style="width: 75%; padding: 20px 0px; margin: auto;">
+                <a class="button" href="javascript:void(0);" onclick="hide()" style="text-decoration: none;">HIDE</a>
+            </div>
+        
+    </div>
+    
+</body>
+    
+<script type="text/javascript">
+    
+    function goFaster(elem) {
+        
+        var element = elem;
+        
+        console.log(element);
+        if(element == "ring1") {
+            localStorage.setItem('ringBRot', parseFloat(localStorage.getItem('ringBRot')) + .0127);
+        }
+        if(element == "ring2") {
+            localStorage.setItem('ringT1Rot', parseFloat(localStorage.getItem('ringT1Rot')) + .0123);
+        }
+        if(element == "ring3") {
+            localStorage.setItem('ringT2Rot', parseFloat(localStorage.getItem('ringT2Rot')) + .012);
+        }
+        if(element == "eye") {
+            localStorage.setItem('eyeRot', parseFloat(localStorage.getItem('eyeRot')) + .013);
+        }
+        else {
+            return
+        }
+    }
+    
+    function goSlower(elem) {
+        
+        var element = elem;
+        
+        if(element == "ring1") {
+            localStorage.setItem('ringBRot', parseFloat(localStorage.getItem('ringBRot')) - .0132);
+        }
+        if(element == "ring2") {
+            localStorage.setItem('ringT1Rot', parseFloat(localStorage.getItem('ringT1Rot')) - .0121);
+        }
+        if(element == "ring3") {
+            localStorage.setItem('ringT2Rot', parseFloat(localStorage.getItem('ringT2Rot')) - .0128);
+        } 
+        if(element == "eye") {
+            localStorage.setItem('eyeRot', parseFloat(localStorage.getItem('eyeRot')) - .0136);
+        }         
+        else {
+            return
+        }
+    }
+    
+    function changeColor(color) {
+        
+        var color_selected = color;
+        
+        if(color_selected == 'colors')
+            {
+                localStorage.setItem('color', color_selected);
+                document.getElementById("color_btn").innerHTML = "<a class='button' href='javascript:void(0);' onclick='changeColor(&#34;black&#34;)' style='text-decoration: none;'>GO BLACK</a>";
+            }
+        if(color_selected == 'black') 
+            {
+                localStorage.setItem('color', color_selected);
+                document.getElementById("color_btn").innerHTML = "<a class='button' href='javascript:void(0);' onclick='changeColor(&#34;colors&#34;)' style='text-decoration: none;'>GO WILD</a>";          
+            }   
+    }
+    
+    function reset() {
+        localStorage.setItem('color', "black");
+        localStorage.setItem('eyeRot', .01);
+        localStorage.setItem('ringBRot', .01);
+        localStorage.setItem('ringT1Rot', .01);
+        localStorage.setItem('ringT2Rot', .01);
+        document.getElementById("color_btn").innerHTML = "<a class='button' href='javascript:void(0);' onclick='changeColor(&#34;black&#34;)' style='text-decoration: none;'>GO WILD</a>";          
+    }
+    
+    function speed(rate) {
+        var rate = parseInt(rate);
+        if (rate == 4) 
+        {
+            var eyeRot = parseFloat(localStorage.getItem('eyeRot'));
+            var ringBRot = parseFloat(localStorage.getItem('ringBRot'));
+            var ringT1Rot = parseFloat(localStorage.getItem('ringT1Rot'));
+            var ringT2Rot = parseFloat(localStorage.getItem('ringT2Rot'));
+
+            if(eyeRot < 0)
+            {
+                localStorage.setItem('eyeRot', Math.abs(parseFloat(localStorage.getItem('eyeRot')) * -1));
+            }
+            if(eyeRot > 0){
+                localStorage.setItem('eyeRot', -Math.abs(parseFloat(localStorage.getItem('eyeRot'))));
+            }  
+            if(ringBRot < 0)
+            {
+                localStorage.setItem('ringBRot', Math.abs(parseFloat(localStorage.getItem('ringBRot')) * -1));
+            }
+            if(ringBRot > 0){
+                localStorage.setItem('ringBRot', -Math.abs(parseFloat(localStorage.getItem('ringBRot'))));
+            }   
+            if(ringT1Rot < 0)
+            {
+                localStorage.setItem('ringT1Rot', Math.abs(parseFloat(localStorage.getItem('ringT1Rot')) * -1));
+            }
+            if(ringT1Rot > 0){
+                localStorage.setItem('ringT1Rot', -Math.abs(parseFloat(localStorage.getItem('ringT1Rot'))));
+            }  
+            if(ringT2Rot < 0)
+            {
+                localStorage.setItem('ringT2Rot', Math.abs(parseFloat(localStorage.getItem('ringT2Rot')) * -1));
+            }
+            if(ringT1Rot > 0){
+                localStorage.setItem('ringT2Rot', -Math.abs(parseFloat(localStorage.getItem('ringT2Rot'))));
+            }              
+
+        }
+        
+        if (rate == 1) {
+            localStorage.setItem('eyeRot', .015);
+            localStorage.setItem('ringBRot', .015);
+            localStorage.setItem('ringT1Rot', .015);
+            localStorage.setItem('ringT2Rot', .015);  
+        }
+        
+        if (rate == 2) {
+            localStorage.setItem('eyeRot', .05);
+            localStorage.setItem('ringBRot', .05);
+            localStorage.setItem('ringT1Rot', .05);
+            localStorage.setItem('ringT2Rot', .05);
+            
+        }
+        if (rate == 3) {
+            localStorage.setItem('eyeRot', .25);
+            localStorage.setItem('ringBRot', .25);
+            localStorage.setItem('ringT1Rot', .25);
+            localStorage.setItem('ringT2Rot', .25);
+        }
+    }
+    
+    function hide() {
+        document.getElementById("visibility").innerHTML = "<a class='button' href='javascript:void(0);' onclick='show()' style='text-decoration: none;'>SHOW</a>";
+        localStorage.setItem('visibility', "off");
+    }
+    
+    function show() {
+        document.getElementById("visibility").innerHTML = "<a class='button' href='javascript:void(0);' onclick='hide()' style='text-decoration: none;'>HIDE</a>";
+        localStorage.setItem('visibility', "on");
+    }
+    
+    function randomColor() {
+        localStorage.setItem('color', "random");
+        
+    }
+    
+
+    
+</script>
+</html>

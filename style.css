@@ -1,0 +1,13 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#display>* {
+    border: none;
+    background-color: whitesmoke;
+    border-radius: 30px;
+}
