@@ -1,5 +1,5 @@
 # dot-live-visualizer
-The code for a public live show visualizer designed by Nich Mueller
+The code for a publicly accessible live show visualizer designed by Nich Mueller
 
 The visualizer for DOT is publicly accessible at: http://cif.rf.gd/
 
